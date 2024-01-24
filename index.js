@@ -7,6 +7,7 @@ const jwt=require('jsonwebtoken')
 const cookieParser=require('cookie-parser')
 const multer=require('multer');
 const Post=require('./models/Post')
+require('dotenv').config()
 
 //now to rename the file we will use the library fs
 const fs =require('fs')
@@ -20,7 +21,7 @@ const app=express();
 //salt is for bcrypt
 const saltRounds = 10;
 //secret for jsonweb tokens
-const secret='secretKey';
+const secret=process.env.secret
 
 
 //if we are addin the token inside a cookie,and if we use use credentials:'include' in the front end
@@ -40,7 +41,8 @@ app.use('/uploads',express.static(__dirname+'/uploads'));
 
 
 //connecting with the mongodb database
- mongoose.connect('mongodb+srv://amal:suvarnam123@cluster0.7u6m64b.mongodb.net/?retryWrites=true&w=majority')
+const mongoURL=process.env.mongoURL
+ mongoose.connect(mongoURL)
 
 
 app.post('/register',async(req,res)=>{
