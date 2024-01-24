@@ -26,7 +26,7 @@ const secret=process.env.secret
 
 //if we are addin the token inside a cookie,and if we use use credentials:'include' in the front end
 //then inside the cors() we have to add -credentials:true, and origin
-app.use(cors({credentials:true,origin:'http://localhost:3000'}))
+app.use(cors({credentials:true,origin:'https://blogfrontend-xdg8.onrender.com'}))
 
 //to get the json from the req.body
 app.use(express.json());
